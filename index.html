@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>구독 관리</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SUB TRACKER</p>
+          <h1>구독 관리</h1>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="summary-grid" aria-label="요약 정보">
+          <article class="summary-card accent-blue">
+            <p class="card-label">월 합계</p>
+            <strong id="monthlyTotal">0원</strong>
+          </article>
+          <article class="summary-card accent-purple">
+            <p class="card-label">연간 합계</p>
+            <strong id="yearlyTotal">0원</strong>
+          </article>
+          <article class="summary-card accent-green">
+            <p class="card-label">이번 주 결제 예정</p>
+            <strong id="upcomingWeek">0건</strong>
+          </article>
+        </section>
+
+        <section class="panel-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <h2>새 구독 추가</h2>
+            </div>
+
+            <form id="subscriptionForm" class="subscription-form">
+              <input type="hidden" id="subscriptionId" />
+
+              <div class="field-group">
+                <label for="name">구독 이름</label>
+                <input id="name" name="name" type="text" placeholder="예: 넷플릭스" required />
+              </div>
+
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="amount">월 결제 금액</label>
+                  <input id="amount" name="amount" type="number" min="0" step="100" placeholder="13500" required />
+                </div>
+
+                <div class="field-group">
+                  <label for="cycle">결제 주기</label>
+                  <select id="cycle" name="cycle" required>
+                    <option value="monthly">월간</option>
+                    <option value="yearly">연간</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="nextPaymentDate">결제 예정일</label>
+                  <input id="nextPaymentDate" name="nextPaymentDate" type="date" required />
+                </div>
+
+                <div class="field-group">
+                  <label for="category">카테고리</label>
+                  <input id="category" name="category" type="text" placeholder="예: 영상" required />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-button" id="submitButton">추가하기</button>
+                <button type="button" class="secondary-button" id="cancelEditButton" hidden>취소</button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="panel">
+            <div class="panel-header">
+              <h2>카테고리별 비중</h2>
+            </div>
+            <div id="categoryChart" class="category-chart" aria-live="polite"></div>
+          </aside>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>구독 목록</h2>
+          </div>
+          <div id="subscriptionList" class="subscription-list" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./logic.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
